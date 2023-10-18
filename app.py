@@ -2,28 +2,27 @@ from flask import Flask, render_template, request, url_for, redirect,flash
 
 app = Flask(__name__)
 
-integrantes= [{'nombre':"Julio Santillan",'correo':"jsantillan@example.com"},              
-              {'nombre':"Jorge Freire",'correo':"jfreire@example.com"},
-              {'nombre':"Blanca Hidalgo",'correo':"bhidalgo@exaple.com"},
-              {'nombre':"Alexandra Morales",'correo':"amorales@example.com"},
-              {'nombre':"Alexander Morales",'correo':"amorales@example.com"},
-              {'nombre':"Alex Aguilera",'correo':"aaguilera@example.com"}]
+integrantes= [{'nombre':"Julio Santillan",'correo':"jsantillan@orale.com"},              
+              {'nombre':"Jorge Freire",'correo':"jfreire@orale.com"},
+              {'nombre':"Blanca Hidalgo",'correo':"bhidalgo@orale.com"},
+              {'nombre':"Alexandra Morales",'correo':"amorales@orale.com"},
+              {'nombre':"Alexander Morales",'correo':"amorales@orale.com"}]
              
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/formularios')
+@app.route('/nuevo')
 def formularios():
-    return render_template('formularios.html')
+    return render_template('nuevo.html')
 
-@app.route('/tablas')
+@app.route('/productos')
 def tablas():
-    return render_template('tablas.html')
+    return render_template('productos.html')
 
-@app.route('/tarjetas')
+@app.route('/equipo')
 def tarjetas():
-    return render_template('tarjetas.html',data=integrantes)
+    return render_template('equipo.html',data=integrantes)
 
 @app.route('/contactanos')
 def contactanos():
@@ -36,9 +35,9 @@ def guardarDatos():
             email = request.form['email']
             integrantes.append({'nombre':name,'correo':email})
             msg = 'OK'
-            return render_template('formularios.html', error=msg)
+            return render_template('nuevo.html', mensaje=msg)
     else:
-        return redirect(url_for('formularios'))
+        return redirect(url_for('nuevo'))
 
 if __name__ =='__main__':
 	app.run(debug=True,port=5000)
