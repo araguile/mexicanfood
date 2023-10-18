@@ -1,0 +1,26 @@
+    {% extends './base.html' %}
+ 
+    {% block body %}
+    <div class="container text-center separacion">
+        <h2>NUESTRO EQUIPO</h2>
+    </div>
+    <!-- <div class="container-fluid" id="infTeam">  -->
+      <div class="container-fluid" >        
+          <div class="d-flex justify-content-around separacion" >
+            {% for item in data%}               
+                  <div class="card o-hidden border-0 shadow-lg my-5" style="width:20%">
+                    <img class="card-img-top" src="static/img/person{{loop.index}}.jpg" alt="Card image">
+                    <div class="card-body">
+                        <h4 class="card-title" id="cardTitle" style="color: black">{{item.nombre}}</h4>
+                        <p class="card-text" style="color: black">{{item.correo}}</p>  
+                    </div>
+                  </div>      
+                  {% if loop.index % 4 == 0 %}
+                    </div>
+                    <div class="d-flex justify-content-around separacion">
+                  {% endif %}
+            {% endfor %}
+        </div>
+      </div>
+    {%endblock%}
+    
